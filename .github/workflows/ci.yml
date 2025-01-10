@@ -43,6 +43,7 @@ jobs:
         run: sudo apt-get install jq
 
       - name: Add Cucumber Test Summary
-        run: |
-          echo "## Cucumber Test Results" >> $GITHUB_STEP_SUMMARY
-          jq '.[] | "\(.name): \(.elements | length) scenarios, \(.elements[].steps[].status)"' target/output/cucumber.json >> $GITHUB_STEP_SUMMARY
+        uses: deblockt/cucumber-report-annotations-action@v1.7
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          path: "**/output/cucumber.json"
