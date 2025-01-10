@@ -39,7 +39,10 @@ jobs:
       - name: Build and test
         run: mvn clean install
 
-      - name: Add Test Results to Summary
+      - name: Install jq for report
+        run: sudo apt-get install jq
+
+      - name: Add Cucumber Test Summary
         run: |
           echo "## Cucumber Test Results" >> $GITHUB_STEP_SUMMARY
-          cat **/output/cucumber.html >> $GITHUB_STEP_SUMMARY
+          jq '.[] | "\(.name): \(.elements | length) scenarios, \(.elements[].steps[].status)"' target/output/cucumber.json >> $GITHUB_STEP_SUMMARY
