@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -40,7 +41,7 @@ public class RegisterPage {
     }
 
     public void enterFieldWith(String fieldName, String value) {
-        driver.findElement(By.name(fieldName)).sendKeys(value);
+        driver.findElement(By.name(fieldName)).sendKeys(value + Keys.RETURN);
     }
 
     public void enterEmail(String email) {
@@ -52,8 +53,7 @@ public class RegisterPage {
     }
 
     public void clickTosCheckbox() {
-        //driver.findElement(byTosCheckbox).click();
-        wait.until(ExpectedConditions.elementToBeClickable(byTosCheckbox)).click();
+        driver.findElement(byTosCheckbox).click();
     }
 
     public void uncheckTosCheckbox() {
