@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - 'features/**'
+      - update_master
   pull_request:
     branches:
       - master
@@ -33,3 +34,7 @@ jobs:
 
       - name: Build and test
         run: mvn clean install
+
+      - name: Publish Test Report
+        if: success() || failure()
+        uses: scacap/action-surefire-report@v1
