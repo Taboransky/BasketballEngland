@@ -1,8 +1,23 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ testng_cleanup ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
+  test:
+    name: Testing on ${{ matrix.browser }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [ chrome, edge ]
+
+    env:
+      BROWSER: ${{ matrix.browser }}
+
   build:
     runs-on: ubuntu-latest
     steps:

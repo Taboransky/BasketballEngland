@@ -1,26 +1,35 @@
 package utils;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverManager {
 
-    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static WebDriver driver;
 
     public static void launchBrowser(String browser) {
-        //System.out.println("4. DriverManager: " + browser);
-        if (driver.get() == null) {
+        System.out.println("LOG: 4. DriverManager: " + browser);
+        if (driver == null) {
             switch (browser.toLowerCase()) {
                 case "chrome":
-                    driver.set(new ChromeDriver());
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--headless", "--disable-gpu", "--no-sandbox");
+                    driver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
-                    driver.set(new FirefoxDriver());
+                    System.out.println("Firefox not implemented yet");
                     break;
                 case "edge":
-                    driver.set(new EdgeDriver());
+                    WebDriverManager.edgedriver().setup();
+                    EdgeOptions edgeOptions = new EdgeOptions();
+                    edgeOptions.addArguments("--headless", "--disable-gpu");
+                    driver = new EdgeDriver(edgeOptions);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid browser name: " + browser);
@@ -29,13 +38,12 @@ public class DriverManager {
     }
 
     public static WebDriver getDriver() {
-        return driver.get();
+        return driver;
     }
 
     public static void quitDriver() {
-        if (driver.get() != null) {
-            driver.get().quit();
-            driver.remove();
+        if (driver != null) {
+            driver.quit();
         }
     }
 }

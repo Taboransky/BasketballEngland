@@ -68,6 +68,7 @@ public class MyStepdefs {
     public void iShouldSeeTheError(String expectedError) {
         String actualError = registerPage.getVisibleErrorMessage();
         assertEquals(expectedError, actualError);
+        System.out.println("LOG: Found the error: " + expectedError);
     }
 
     @Then("I land on the confirmation page")

@@ -12,8 +12,14 @@ public class Hooks {
 
     @Before
     public void setup() throws Throwable {
-        String browser = ConfigReader.getBrowserType();
-        //System.out.println("3. Hooks: " + browser);
+        String browser = System.getenv("BROWSER");
+
+        if (browser == null) {
+            System.out.println("LOG: Hooks: Browser not specified by Environmnet, defaulting to chrome");
+            browser = "chrome";
+        }
+
+        System.out.println("LOG: 1. Hooks: " + browser);
         DriverManager.launchBrowser(browser);
     }
 

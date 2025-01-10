@@ -10,7 +10,7 @@ public class ConfigReader {
 
     public static String getBrowserType() throws Throwable {
         if (browserType != null) {
-            //System.out.println("2. ConfigReader: " + browserType);
+            System.out.println("2. ConfigReader: " + browserType);
             return browserType;
         } else {
             System.out.println("2. Browser not specified in the testng.xml, defaulting to chrome");
