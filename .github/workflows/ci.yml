@@ -42,4 +42,4 @@ jobs:
       - name: Add Test Results to Summary
         run: |
           echo "## Cucumber Test Results" >> $GITHUB_STEP_SUMMARY
-          cat cucumber-report.html >> $GITHUB_STEP_SUMMARY
+          cat **/output/cucumber.html >> $GITHUB_STEP_SUMMARY
