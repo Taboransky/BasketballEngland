@@ -39,8 +39,8 @@ jobs:
       - name: Build and test
         run: mvn clean install
 
-      - name: Publish Cucumber Reports
-        uses: actions/upload-artifact@v3
+      - name: Publish Test Results
+        uses: phoenixbyrd/github-actions-ctrf@v1
+        if: always() # Ensure this runs even if tests fail
         with:
-          name: cucumber-reports
-          path: target/cucumber-reports
+          results_glob: 'target/output/*.json'
