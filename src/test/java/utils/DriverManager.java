@@ -19,7 +19,7 @@ public class DriverManager {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--headless", "--disable-gpu", "--no-sandbox");
+                    //chromeOptions.addArguments("--headless", "--disable-gpu", "--no-sandbox");
                     driver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
@@ -28,7 +28,7 @@ public class DriverManager {
                 case "edge":
                     WebDriverManager.edgedriver().setup();
                     EdgeOptions edgeOptions = new EdgeOptions();
-                    edgeOptions.addArguments("--headless", "--disable-gpu");
+                    //edgeOptions.addArguments("--headless", "--disable-gpu");
                     driver = new EdgeDriver(edgeOptions);
                     break;
                 default:
