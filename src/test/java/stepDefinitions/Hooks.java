@@ -2,16 +2,12 @@ package stepDefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.openqa.selenium.WebDriver;
-import utils.ConfigReader;
 import utils.DriverManager;
 
 public class Hooks {
 
-    private static WebDriver driver;
-
     @Before
-    public void setup() throws Throwable {
+    public void setup() {
         String browser = System.getenv("BROWSER");
 
         if (browser == null) {
