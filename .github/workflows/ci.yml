@@ -43,4 +43,4 @@ jobs:
         if: success() || failure()
         uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
-          path: "**/cucumber-reports"
+          path: "**/cucumber-report.json"
