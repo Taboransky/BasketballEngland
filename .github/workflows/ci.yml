@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
       - 'features/**'
       - update_master
   pull_request:
@@ -39,8 +39,7 @@ jobs:
       - name: Build and test
         run: mvn clean install
 
-      - name: Publish Test Results
-        uses: phoenixbyrd/github-actions-ctrf@v1
-        if: always() # Ensure this runs even if tests fail
-        with:
-          results_glob: 'target/output/*.json'
+      - name: Add Test Results to Summary
+        run: |
+          echo "## Cucumber Test Results" >> $GITHUB_STEP_SUMMARY
+          cat cucumber-report.html >> $GITHUB_STEP_SUMMARY
