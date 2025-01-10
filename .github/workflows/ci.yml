@@ -48,4 +48,3 @@ jobs:
           access-token: ${{ secrets.GITHUB_TOKEN }}
           name: Cucumber report ${{ matrix.browser }}
           path: "**/output/cucumber.json"
-          show-global-summary-report: true
