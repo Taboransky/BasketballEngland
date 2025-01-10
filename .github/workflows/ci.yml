@@ -39,8 +39,8 @@ jobs:
       - name: Build and test
         run: mvn clean install
 
-      - name: Publish Test Report
-        if: success() || failure()
-        uses: deblockt/cucumber-report-annotations-action@v1.7
+      - name: Publish Cucumber Reports
+        uses: actions/upload-artifact@v3
         with:
-          path: "**/cucumber-report.json"
+          name: cucumber-reports
+          path: target/cucumber-reports
