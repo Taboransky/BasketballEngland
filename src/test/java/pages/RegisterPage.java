@@ -10,8 +10,8 @@ import java.time.Duration;
 
 public class RegisterPage {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     private final String pageAddress = "https://membership.basketballengland.co.uk/NewSupporterAccount";
 
@@ -52,7 +52,8 @@ public class RegisterPage {
     }
 
     public void clickTosCheckbox() {
-        driver.findElement(byTosCheckbox).click();
+        //driver.findElement(byTosCheckbox).click();
+        wait.until(ExpectedConditions.elementToBeClickable(byTosCheckbox)).click();
     }
 
     public void uncheckTosCheckbox() {
