@@ -14,8 +14,6 @@ public class RegisterPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
-    private final String pageAddress = "https://membership.basketballengland.co.uk/NewSupporterAccount";
-
     // Locators
     private final By byPageTitle = By.id("titleText1");
     private final By byEmailAddress = By.name("EmailAddress");
@@ -33,6 +31,7 @@ public class RegisterPage {
     }
 
     public void openPage() {
+        String pageAddress = "https://membership.basketballengland.co.uk/NewSupporterAccount";
         driver.get(pageAddress);
     }
 
