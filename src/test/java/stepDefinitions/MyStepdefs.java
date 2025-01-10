@@ -4,15 +4,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.ConfirmationPage;
 import pages.RegisterPage;
-import utils.DriverManager;
-
-import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -80,6 +73,7 @@ public class MyStepdefs {
     @Then("I land on the confirmation page")
     public void iLandOnTheConfirmationPage() {
         confirmationPage.ensurePageLoaded();
+
         // asserts Thank you page title matches
         String expectedTitle = "THANK YOU FOR CREATING AN ACCOUNT WITH BASKETBALL ENGLAND";
         String actualTitle = confirmationPage.getPageTitle();
@@ -102,6 +96,5 @@ public class MyStepdefs {
         }
 
         iFillInEmailWithANewRandomEmail();
-        //iCheckAllCheckboxes();
     }
 }

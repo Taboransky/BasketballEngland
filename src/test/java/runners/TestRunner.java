@@ -9,7 +9,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import utils.ConfigReader;
 
-@RunWith(Cucumber.class)
+//@RunWith(Cucumber.class)
 @CucumberOptions(
         features = {"src/test/resources/features"},
         glue = "stepDefinitions",
