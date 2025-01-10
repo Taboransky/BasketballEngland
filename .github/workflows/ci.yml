@@ -46,4 +46,6 @@ jobs:
         uses: deblockt/cucumber-report-annotations-action@v1.7
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
+          name: Cucumber report ${{ matrix.browser }}
           path: "**/output/cucumber.json"
+          show-global-summary-report: true
