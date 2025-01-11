@@ -15,8 +15,8 @@ public class Hooks {
             browser = "chrome";
         }
 
-        System.out.println("LOG: 1. Hooks: " + browser);
-        DriverManager.launchBrowser(browser);
+        //System.out.println("LOG: 1. Hooks: " + browser);
+        DriverManager.setBrowser(browser);
     }
 
     @After

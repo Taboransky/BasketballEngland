@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - master
-      - 'features/**'
-      - update_master
+      - 'feature/**'
   pull_request:
     branches:
       - master
@@ -38,13 +37,3 @@ jobs:
 
       - name: Build and test
         run: mvn clean install
-
-      - name: Install jq for report
-        run: sudo apt-get install jq
-
-      - name: Add Cucumber Test Summary
-        uses: deblockt/cucumber-report-annotations-action@v1.7
-        with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          name: Cucumber report ${{ matrix.browser }}
-          path: "**/output/cucumber.json"
