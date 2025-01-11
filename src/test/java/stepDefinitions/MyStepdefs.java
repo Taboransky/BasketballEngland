@@ -84,7 +84,7 @@ public class MyStepdefs {
         String membershipNumber = confirmationPage.getMembershipNumber();
         assertFalse(membershipNumber.isEmpty());
 
-        System.out.println("Account created.\nMembership number: " + membershipNumber);
+        System.out.println("LOG: Account created.\nLOG: Membership number: " + membershipNumber);
     }
 
     @And("I fill in all fields in the registration")
@@ -95,7 +95,6 @@ public class MyStepdefs {
         for (int i = 0; i < fieldNames.length; i++) {
             iFillInWith(fieldNames[i], values[i]);
         }
-
         iFillInEmailWithANewRandomEmail();
     }
 }
