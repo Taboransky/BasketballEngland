@@ -1,12 +1,12 @@
 # Documentation
 
 - I tried to develop this project as close as possible to a 'real' project and not only follow the requirements in the slides.
-- The project uses Cucumber, JUnit and TestNG to run all tests parallel on two browsers.
+- The project uses Cucumber, JUnit and GithubActions to run all tests parallel on two browsers.
 - I also wrote PoMs for RegisterPage and ConfirmationPage, to improve test readability.
 
 <br/>
-  
-**Scenarios explanation:**
+
+**Scenarios explained:**
 ```
 Background: I fill in every required field in the registration
   - Fills in all fields and checks the required checkboxes
@@ -32,45 +32,36 @@ Scenario: I create a user successfully
 
 <br>
 
-Parallel cross browser testning runs with the help of TestNG:
+Cross browser testing runs with the help of GithubActions:
 ```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="CrossBrowserTestSuite" data-provider-thread-count="4">
-    <test name="TestChrome">
-        <parameter name="browser" value="chrome" />
-        <classes>
-            <class name="runners.TestRunner"> </class>
-        </classes>
-    </test>
-    <test name="TestEdge">
-        <parameter name="browser" value="edge" />
-        <classes>
-            <class name="runners.TestRunner"> </class>
-        </classes>
-    </test>
-</suite>
-```
-- `data-provider-thread-count="4"` sets a maximum of 4 threads running parallel
-- `TestRunner.java` contains CucumberOptions + defines browser from TestNG parameter
+jobs:
+  test:
+    name: Testing on ${{ matrix.browser }}
+    runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        browser: [ chrome, edge ]
+
+    env:
+      BROWSER: ${{ matrix.browser }}
+
+```
 <br/>
 
 ## Running tests
-To run Cross browser testing you have to run it via the `testng.xml` file:
-<br>
-![image](https://github.com/user-attachments/assets/083dee95-9dd4-4ad6-bbb1-34e5178459ed)
-<br>
-Alternatively you can run only the Cucumber Feature file, which will default to Chrome only:
-<br>
-![image](https://github.com/user-attachments/assets/81c3c1ec-d66b-4d7c-b61b-12cedc9361e3)
-<br>
+Currently there's a Workflow that runs on every PR to Master or push to Master or `feature/**` branches.   
+Alternatively you can run Cucumber tests via IntelliJ (will not run cross-browser though, only Chrome).
+- Checkout the repository
+- Run `mvn clean install`
+- ???
+- Profit!
 
 ## Final result 
 ```
 ===============================================
-CrossBrowserTestSuite
-Total tests run: 22, Passes: 22, Failures: 0, Skips: 0
+[INFO] Results:
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
 ===============================================
 ```
-![image](https://github.com/user-attachments/assets/6bbf6305-83f7-4153-80fb-bf472e7cacb8)
+![img.png](img.png)
